@@ -1,1 +1,44 @@
-{"swagger":"2.0","info":{"version":"v1","title":"My API"},"paths":{"/api/Values":{"get":{"tags":["Values"],"operationId":"GetsAllTheValues","consumes":[],"produces":["text/plain","application/json","text/json"],"parameters":[],"responses":{"200":{"description":"Success","schema":{"uniqueItems":false,"type":"array","items":{"type":"string"}}}}},"post":{"tags":["Values"],"operationId":"AddsANewValue","consumes":["application/json-patch+json","application/json","text/json","application/*+json"],"produces":[],"parameters":[{"name":"value","in":"body","required":false,"schema":{"type":"string"}}],"responses":{"200":{"description":"Success"}}}}},"definitions":{}}
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "v1",
+		"title": "MyValues"
+	},
+	"paths": {
+		"/api/Values": {
+			"get": {
+				"tags": [ "Values" ],
+				"operationId": "GetAllValues",
+				"consumes": [],
+				"produces": [ "text/plain", "application/json", "text/json" ],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"uniqueItems": false,
+							"type": "array",
+							"items": { "type": "string" }
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [ "Values" ],
+				"operationId": "AddNewValue",
+				"consumes": [ "application/json-patch+json", "application/json", "text/json", "application/*+json" ],
+				"produces": [],
+				"parameters": [
+					{
+						"name": "value",
+						"in": "body",
+						"required": false,
+						"schema": { "type": "string" }
+					}
+				],
+				"responses": { "200": { "description": "Success" } }
+			}
+		}
+	},
+	"definitions": {}
+}

@@ -11,7 +11,7 @@ namespace CustomLogicAppsConnector.Controllers
 
 		// GET api/values
 		[HttpGet]
-		public ActionResult<IEnumerable<string>> GetsAllTheValues()
+		public ActionResult<IEnumerable<string>> GetAllValues()
 		{
 			return values;
 		}
@@ -25,7 +25,7 @@ namespace CustomLogicAppsConnector.Controllers
 
 		// POST api/values
 		[HttpPost]
-		public void AddsANewValue([FromBody] string value)
+		public void AddNewValue([FromBody] string value)
 		{
 			values.Add(value);
 		}
