@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
@@ -68,8 +70,26 @@ namespace CreateTeamsTeam
 				owners: requestedOwners.Select(owner => User(allUsers, owner)),
 				members: requestedMembers.Select(member => User(allUsers, member))
 			);
-
 			Log($"Created new group \"{newGroup.DisplayName}\" (id:{newGroup.Id})", ConsoleColor.Magenta);
+
+
+			//next release: graphClient.Groups[newGroup.Id].Team.Request().PutAsync(team) https://github.com/microsoftgraph/msgraph-sdk-dotnet/pull/352
+			dynamic newTeam = await Invoke(graphClient, HttpMethod.Put,
+				url: $"{graphClient.Groups.Request().RequestUrl}/{newGroup.Id}/team",
+				body: new
+				{
+					MemberSettings = new
+					{
+						AllowCreateUpdateChannels = true
+					},
+					MessagingSettings = new
+					{
+						AllowUserEditMessages = true,
+						AllowUserDeleteMessages = true
+					},
+				}
+			);
+			Log($"Created new team (id:{(string)newTeam.Id}): {(string)newTeam.webUrl}", ConsoleColor.Magenta);
 		}
 
 
@@ -158,6 +178,26 @@ namespace CreateTeamsTeam
 
 			var newGroup = await graphClient.Groups.Request().AddAsync(group);
 			return newGroup;
+		}
+
+		static async Task<dynamic> Invoke(IGraphServiceClient graphClient, HttpMethod method, string url, object body)
+		{
+			var hrm = new HttpRequestMessage(method, url)
+			{
+				Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json")
+			};
+			await graphClient.AuthenticationProvider.AuthenticateRequestAsync(hrm);
+			var response = await graphClient.HttpProvider.SendAsync(hrm);
+			var content = await response.Content.ReadAsStringAsync();
+			if (response.IsSuccessStatusCode)
+			{
+				return graphClient.HttpProvider.Serializer.DeserializeObject<dynamic>(content);
+			}
+			else
+			{
+				Log($"{response.StatusCode.ToString()}: {content}", ConsoleColor.Red);
+				return null;
+			}
 		}
 
 	}
