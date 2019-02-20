@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomLogicAppsConnector", "CustomLogicAppsConnector\CustomLogicAppsConnector.csproj", "{6286E8C1-BB03-4207-93AA-F532568A5FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomLogicAppsConnector", "CustomLogicAppsConnector\CustomLogicAppsConnector.csproj", "{6286E8C1-BB03-4207-93AA-F532568A5FFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateTeamsTeam", "CreateTeamsTeam\CreateTeamsTeam.csproj", "{672C7DB6-4E3B-4387-A65F-07F2FC7F1B41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6286E8C1-BB03-4207-93AA-F532568A5FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6286E8C1-BB03-4207-93AA-F532568A5FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6286E8C1-BB03-4207-93AA-F532568A5FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{672C7DB6-4E3B-4387-A65F-07F2FC7F1B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672C7DB6-4E3B-4387-A65F-07F2FC7F1B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{672C7DB6-4E3B-4387-A65F-07F2FC7F1B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672C7DB6-4E3B-4387-A65F-07F2FC7F1B41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
